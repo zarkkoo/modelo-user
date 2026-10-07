@@ -1,17 +1,13 @@
 <?php
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
+// Rutas públicas
+Route::get('/users', [AuthController::class, 'getUsers']);
+Route::post('/users/register', [AuthController::class, 'register']);
+Route::post('/users/login', [AuthController::class, 'login']);
 
-Route::get('/users', [UserController::class, 'get']);
-
-
-Route::post('/users', [UserController::class, 'create']);
-
-Route::post('/users/login', [UserController::class, 'login']);
-
-
-Route::put('/users/username', [UserController::class, 'updateUsername']);
-Route::put('/users/email', [UserController::class, 'updateEmail']);
-Route::put('/users/password', [UserController::class, 'updatePassword']);
-Route::delete('/users', [UserController::class, 'destroy']);
+// Rutas protegidas por Token (Sanctum)
+Route::middleware('auth:sanctum')->group(function () {
+    Route::put('/user/name', [AuthController::class, 'updateName']);
+});
