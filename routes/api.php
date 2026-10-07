@@ -2,7 +2,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
-// Rutas públicas
+
 Route::get('/users', [AuthController::class, 'getUsers']);
 Route::post('/users/register', [AuthController::class, 'register']);
 Route::post('/users/login', [AuthController::class, 'login']);

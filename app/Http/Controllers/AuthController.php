@@ -9,7 +9,7 @@ use Exception;
 
 class AuthController extends Controller
 {
-    // 1. Obtener una lista de los 10 primeros usuarios
+    
     public function getUsers()
     {
         try {
@@ -30,7 +30,7 @@ class AuthController extends Controller
         }
     }
 
-    // 2. Crear usuario hasheando la contraseña
+  
     public function register(Request $request)
     {
         try {
@@ -67,7 +67,7 @@ class AuthController extends Controller
         }
     }
 
-    // 3. Iniciar sesión generando y devolviendo un token de sesión
+    
     public function login(Request $request)
     {
         try {
@@ -86,7 +86,7 @@ class AuthController extends Controller
                 ], 401);
             }
 
-            // Eliminar tokens anteriores (opcional para mantener uno activo) o crear uno nuevo
+            
             $token = $user->createToken('auth_token')->plainTextToken;
 
             return response()->json([
@@ -108,7 +108,7 @@ class AuthController extends Controller
         }
     }
 
-    // 4. Actualizar el campo name pasándole el token y el nuevo name
+
     public function updateName(Request $request)
     {
         try {
@@ -116,7 +116,7 @@ class AuthController extends Controller
                 'name' => 'required|string|max:255',
             ]);
 
-            // El usuario se obtiene automáticamente a través del token Bearer validado por Sanctum
+           
             $user = $request->user();
 
             if (! $user) {
